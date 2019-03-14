@@ -1,7 +1,8 @@
-apply plugin: 'java'
 plugins {
   id "org.sonarqube" version "2.7"
 }
+
+apply plugin: 'java'
 repositories {
     mavenCentral()
 }
