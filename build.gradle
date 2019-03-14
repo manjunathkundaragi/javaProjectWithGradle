@@ -5,7 +5,9 @@ plugins {
 
 apply plugin: 'java'
 repositories {
-    mavenCentral()
+    maven {
+      url = uri("https://repo.maven.apache.org/maven2")
+    }
 }
 dependencies {
 		testCompile 'junit:junit:4.12'
