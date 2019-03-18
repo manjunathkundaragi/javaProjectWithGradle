@@ -19,3 +19,15 @@ jar {
         attributes 'Main-Class': 'HelloWorld'
     }
 }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            // more goes in here
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
