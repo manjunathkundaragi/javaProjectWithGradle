@@ -32,6 +32,9 @@ publishing {
         }
     }
     repositories {
-        mavenLocal()
+        maven {
+            name = "myJavaRepo"
+            url = uri("file://${buildDir}/myRepo")
+        }
     }
 }
