@@ -29,9 +29,7 @@ def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "${localMavenRepo}/")
-            pom.version = '1.0Maven'
-            pom.artifactId = 'myMavenName'
-        }
+            repository(url: "file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath")
+         }
     }
 }
