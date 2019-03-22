@@ -67,9 +67,6 @@ server.upload spec: uploadSpec
   
   stage('Deploy to Artifactory using gradle'){
       //sh label: '', script: "curl -uadmin:APAtN1w4MuidS5RwTrPPwvSmQtr -T ${WORKSPACE}/build/libs/gradlePipelineDemo_forJavaProject-1.0.jar https://artifactoryg01dy.jfrog.io/artifactoryg01dyg01dy/libs-snapshot/com/sample/program/gradlePipelineDemo_forJavaProject/1.0"
-      def server = Artifactory.server 'gauavArtifactory'
-      def rtGradle = Artifactory.newGradleBuild()
-      rtGradle.resolver server: server, repo: 'libs-snapshot-local'
-      rtGradle.deployer server: server, repo: 'libs-snapshot-local'
+      bat script: "${gradleHome}\\bin\\gradle artifactoryDeploy"   
   }
 }
