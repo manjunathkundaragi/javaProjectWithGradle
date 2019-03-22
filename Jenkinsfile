@@ -14,8 +14,10 @@ node {
    
    stage ('Clean'){
      if (isUnix()) {
-         sh "'${gradleHome}\\bin\\gradle' clean"
+        echo "Inside Unix System"
+         sh "'${gradleHome}/bin/gradle' clean"
       } else {
+         echo "Inside Windows System"
          bat script: "${gradleHome}\\bin\\gradle clean"
       }  
        
@@ -23,14 +25,14 @@ node {
    stage('Build') {
       // Run the maven build
       if (isUnix()) {
-         sh "'${gradleHome}\\bin\\gradle' build -x test"
+         sh "'${gradleHome}/bin/gradle' build -x test"
       } else {
          bat script: "${gradleHome}\\bin\\gradle build -x test"
       }
    }
    stage('UnitTest') {
      if (isUnix()) {
-       sh "'${gradleHome}\\bin\\gradle' test"
+       sh "'${gradleHome}/bin/gradle' test"
        } else {
          
        bat script: "${gradleHome}\\bin\\gradle test"
@@ -39,13 +41,19 @@ node {
    
    stage('SonarQube Analysis') {
       echo "SonarQube Analysis begin"
+      if (isUnix()) {
+       sh "'${gradleHome}/bin/gradle' sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=860b7e9e06174ee34335ad0f6f200f4fc8737725""
+       } else {
       bat script: "${gradleHome}\\bin\\gradle sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=860b7e9e06174ee34335ad0f6f200f4fc8737725"
       }
-      
+   }
       stage ('Deploy to Maven local'){
           echo "Deploy to Maven local begins"
+         if (isUnix()) {
+       sh "'${gradleHome}/bin/gradle' uploadArchives -i"
+       } else {
           bat script: "${gradleHome}\\bin\\gradle uploadArchives -i"
-          
+         }  
       }
       
       stage('Deploy to Artifactory cloud'){
@@ -67,6 +75,10 @@ server.upload spec: uploadSpec
   
   stage('Deploy to Artifactory using gradle'){
       //sh label: '', script: "curl -uadmin:APAtN1w4MuidS5RwTrPPwvSmQtr -T ${WORKSPACE}/build/libs/gradlePipelineDemo_forJavaProject-1.0.jar https://artifactoryg01dy.jfrog.io/artifactoryg01dyg01dy/libs-snapshot/com/sample/program/gradlePipelineDemo_forJavaProject/1.0"
-      bat script: "${gradleHome}\\bin\\gradle artifactoryDeploy"   
+     if (isUnix()) {
+       sh "'${gradleHome}/bin/gradle' artifactoryDeploy"
+     } else {    
+     bat script: "${gradleHome}\\bin\\gradle artifactoryDeploy"   
   }
+ }
 }
