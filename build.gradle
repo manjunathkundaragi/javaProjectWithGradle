@@ -41,7 +41,6 @@ jar {
     }
 }
 
-def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
 uploadArchives {
     repositories {
         mavenDeployer {
