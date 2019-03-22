@@ -1,5 +1,5 @@
 node {
-   def mvnHome
+   //def mvnHome
    def gradleHome
   stage('Checkout stage') { // for display purposes
       // Get some code from a GitHub repository
@@ -8,8 +8,8 @@ node {
       // Get the Maven tool.
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
-      mvnHome = tool name: 'maven354', type: 'maven'
-      gradleHome = tool name: 'gradle45', type: 'gradle'
+      //mvnHome = tool name: 'maven354', type: 'maven'
+      gradleHome = tool name: 'gradle5', type: 'gradle' 
    }
    
    stage ('Clean'){
