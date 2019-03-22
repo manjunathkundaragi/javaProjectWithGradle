@@ -42,9 +42,9 @@ node {
    stage('SonarQube Analysis') {
       echo "SonarQube Analysis begin"
       if (isUnix()) {
-       sh "'${gradleHome}/bin/gradle' sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=860b7e9e06174ee34335ad0f6f200f4fc8737725""
-       } else {
-      bat script: "${gradleHome}\\bin\\gradle sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=860b7e9e06174ee34335ad0f6f200f4fc8737725"
+sh "'${gradleHome}/bin/gradle' sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=860b7e9e06174ee34335ad0f6f200f4fc8737725" 
+      } else {
+bat script: "${gradleHome}\\bin\\gradle sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=860b7e9e06174ee34335ad0f6f200f4fc8737725"
       }
    }
       stage ('Deploy to Maven local'){
