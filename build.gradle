@@ -2,7 +2,7 @@ plugins {
   id "java"
   id "org.sonarqube" version "2.7"
   id "maven"
- // id "com.jfrog.artifactory" version "4.9.3"
+ id "com.jfrog.artifactory" version "4.9.3"
 }
 
 repositories {
