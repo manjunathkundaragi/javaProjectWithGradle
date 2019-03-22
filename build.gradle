@@ -1,25 +1,25 @@
-//buildscript {
-    //repositories {
-       // maven {
-           // url 'https://artifactoryg01dy.jfrog.io/artifactoryg01dy/libs-snapshot'
-          //  credentials {
-            //    username = "${artifactory_user}"
-            //    password = "${artifactory_password}"
-           /// }
-        //}
+buildscript {
+    repositories {
+        maven {
+            url 'https://artifactoryg01dy.jfrog.io/artifactoryg01dy/libs-snapshot'
+            credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+           }
+        }
         
-    //}
-    //dependencies {
+    }
+    dependencies {
         //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
-        //classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
-    //}
-//}
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+    }
+}
 
 plugins {
   id "java"
   id "org.sonarqube" version "2.7"
   id "maven"
-  //id "com.jfrog.artifactory" version "4.9.3"
+  id "com.jfrog.artifactory" version "4.9.3"
 }
 
 repositories {
@@ -49,16 +49,14 @@ uploadArchives {
     }
 }
 
-//artifactory {
-    //contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
-    //publish {
-       // repository {
-            //repoKey = 'libs-snapshot-local'
-           // username = "${artifactory_user}"
-           // password = "${artifactory_password}"
-          //  maven = true
-            
-       // }
-   // }
-    
-//}
+artifactory {
+    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+    publish {
+        repository {
+            repoKey = 'libs-snapshot-local'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true  
+       }
+    }
+  }
