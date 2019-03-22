@@ -24,8 +24,11 @@ plugins {
 repositories {
     //mavenLocal()
     maven {
-           url = uri("https://repo.maven.apache.org/maven2")
-	   }
+    	   url 'https://artifactoryg01dy.jfrog.io/artifactoryg01dy/libs-snapshot'
+            credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+            }     
 	}
 
 group = "com.sample.program"
