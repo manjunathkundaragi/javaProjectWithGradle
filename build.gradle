@@ -30,7 +30,7 @@ repositories {
                 password = "${artifactory_password}"
             }     
 	}
-
+     }
 group = "com.sample.program"
 version = "1.0"
 
