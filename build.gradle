@@ -6,9 +6,10 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
-    //maven {
-           //url = uri("https://repo.maven.apache.org/maven2")
+    //mavenLocal()
+    maven {
+           url = uri("https://repo.maven.apache.org/maven2")
+	   /Users/manuelj/apache/maven/repository
     //}
 }
 
