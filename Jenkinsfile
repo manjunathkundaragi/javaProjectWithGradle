@@ -43,8 +43,10 @@ node {
    stage('SonarQube Analysis') {
       echo "SonarQube Analysis begin"
       if (isUnix()) {
-sh "'${gradleHome}/bin/gradle' sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=860b7e9e06174ee34335ad0f6f200f4fc8737725" 
+         echo "Running Sinarqube from  Unix System"
+//sh "'${gradleHome}/bin/gradle' sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=860b7e9e06174ee34335ad0f6f200f4fc8737725" 
       } else {
+         echo "Running Sonarqube from  Windows System"
 bat script: "${gradleHome}\\bin\\gradle sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=860b7e9e06174ee34335ad0f6f200f4fc8737725"
       }
    }
@@ -77,6 +79,7 @@ server.upload spec: uploadSpec
   stage('Deploy to Artifactory using gradle'){
       //sh label: '', script: "curl -uadmin:APAtN1w4MuidS5RwTrPPwvSmQtr -T ${WORKSPACE}/build/libs/gradlePipelineDemo_forJavaProject-1.0.jar https://artifactoryg01dy.jfrog.io/artifactoryg01dyg01dy/libs-snapshot/com/sample/program/gradlePipelineDemo_forJavaProject/1.0"
      if (isUnix()) {
+        echo "Running Artifactory from  Unix System"
        sh "'${gradleHome}/bin/gradle' artifactoryDeploy"
      } else {    
      bat script: "${gradleHome}\\bin\\gradle artifactoryDeploy"   
