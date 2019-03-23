@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+    	mavenCentral()
         maven {
             //url 'https://artifactoryg01dy.jfrog.io/artifactoryg01dy/libs-snapshot'
 	    url "https://plugins.gradle.org/m2/"
