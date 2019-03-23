@@ -1,40 +1,20 @@
-buildscript {
-    repositories {
-    	mavenCentral()
-        maven {
-            //url 'https://artifactoryg01dy.jfrog.io/artifactoryg01dy/libs-snapshot'
-	    url "https://plugins.gradle.org/m2/"
-	    
-            //credentials {
-              //  username = "${artifactory_user}"
-             //   password = "${artifactory_password}"
-            //}
-        }
-        
-    }
-    dependencies {
-        //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
-        //classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
-	classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7"
-    }
-}
-
 plugins {
   id "java"
   id "org.sonarqube" version "2.7"
   id "maven"
-  //id "com.jfrog.artifactory" version "4.9.3"
+  id "maven-publish"
+  id "com.jfrog.artifactory" version "4.9.3"
 }
 
 repositories {
     maven {
-         url = uri("https://repo.maven.apache.org/maven2")
-	 url = uri("https://plugins.gradle.org/m2/")
+    	 mavenCentral()
+         url "https://repo.maven.apache.org/maven2"
     }
 }
 
 group = "com.sample.program"
-version = "1.0"
+version = "1.2"
 
 dependencies {
 		testCompile 'junit:junit:4.12'
@@ -54,14 +34,25 @@ uploadArchives {
     }
 }
 
-artifactory {
+ artifactory {
     contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
     publish {
         repository {
-            repoKey = 'libs-snapshot-local'
+            repoKey = 'gauravLocalRepo'
             username = "${artifactory_user}"
             password = "${artifactory_password}"
             maven = true  
        }
+       defaults {
+            publications ('mavenJava')
+        }
     }
   }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
