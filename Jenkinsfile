@@ -80,7 +80,7 @@ server.upload spec: uploadSpec
       //sh label: '', script: "curl -uadmin:APAtN1w4MuidS5RwTrPPwvSmQtr -T ${WORKSPACE}/build/libs/gradlePipelineDemo_forJavaProject-1.0.jar https://artifactoryg01dy.jfrog.io/artifactoryg01dyg01dy/libs-snapshot/com/sample/program/gradlePipelineDemo_forJavaProject/1.0"
      if (isUnix()) {
         echo "Running Artifactory from  Unix System"
-       sh "'${gradleHome}/bin/gradle' artifactoryDeploy"
+       sh "'${gradleHome}/bin/gradle' artifactoryPublish"
      } else {    
      bat script: "${gradleHome}\\bin\\gradle artifactoryPublish"   
   }
