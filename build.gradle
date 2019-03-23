@@ -25,6 +25,7 @@ plugins {
 repositories {
     maven {
          url = uri("https://repo.maven.apache.org/maven2")
+	 url = uri("https://plugins.gradle.org/m2/")
     }
 }
 
