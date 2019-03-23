@@ -15,6 +15,7 @@ node {
    stage ('Clean'){
      if (isUnix()) {
         echo "Inside Unix System"
+        sh "'${gradleHome}/bin/gradle' -v"
          sh "'${gradleHome}/bin/gradle' clean"
       } else {
          echo "Inside Windows System"
