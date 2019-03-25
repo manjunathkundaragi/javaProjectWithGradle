@@ -14,7 +14,7 @@ repositories {
 }
 
 group = "com.sample.program"
-version = "1.3"
+libraryVersion = "1.3"
 
 dependencies {
 		testCompile 'junit:junit:4.12'
@@ -53,6 +53,10 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
+	    //groupId packageName
+            version = libraryVersion
+            artifactId project.getName()
+            artifact("$buildDir//lib//${project.getName()}-$version.jar")
         }
     }
 }
