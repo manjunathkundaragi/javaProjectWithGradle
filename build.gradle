@@ -55,8 +55,8 @@ publishing {
             from components.java
 	    //groupId packageName
             //version = libraryVersion
-            artifactId project.getName()
-            artifact("$buildDir//libs//${project.getName()}-${version}.jar")
+            //artifactId project.getName()
+            //artifact("$buildDir//libs//${project.getName()}-${version}.jar")
         }
     }
 }
