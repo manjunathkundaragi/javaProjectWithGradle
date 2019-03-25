@@ -56,7 +56,7 @@ publishing {
 	    //groupId packageName
             //version = libraryVersion
             artifactId project.getName()
-            artifact("$buildDir//lib//${project.getName()}-$version.jar")
+            artifact("$buildDir//lib//${project.getName()}-$version")
         }
     }
 }
