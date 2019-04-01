@@ -10,6 +10,7 @@ repositories {
     maven {
     	 mavenCentral()
          url "https://repo.maven.apache.org/maven2"
+	 url "https://artifactoryg01dy.jfrog.io/artifactoryg01dy/webapp/gauravLocalRepo"
     }
 }
 
@@ -18,6 +19,7 @@ version = "1.5"
 
 dependencies {
 		testCompile 'junit:junit:4.12'
+		compile(group: 'com.sample.program', name: 'gradlePipelineDemo_JavaProject', version: '1.0')
 	}
 
 jar {
