@@ -1,6 +1,6 @@
 plugins {
-  id "java"
-  id "org.sonarqube" version "2.7"
+  id "java" 
+//  id "org.sonarqube" version "2.7"
   id "maven"
   id "maven-publish"
   id "com.jfrog.artifactory" version "4.9.3"
@@ -10,7 +10,7 @@ repositories {
     maven {
     	 mavenCentral()
          url "https://repo.maven.apache.org/maven2"
-	 url "https://artifactoryg01dy.jfrog.io/artifactoryg01dy/webapp/gauravLocalRepo"
+//	 url "https://manjuk.jfrog.io/manjuk/gauravLocalRepo"
     }
 }
 
@@ -19,7 +19,8 @@ version = "1.5"
 
 dependencies {
 		testCompile 'junit:junit:4.12'
-		compile 'com.sample.program:gradlePipelineDemo_JavaProject:1.0'
+//		compile(group: 'com.sample.program', name: 'gradlePipelineDemo_JavaProject', version: '1.5')
+//		compile 'com.sample.program:gradlePipelineDemo_JavaProject:1.0'
 	}
 
 jar {
@@ -31,7 +32,7 @@ jar {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "file://C:/Users/585933/.m2/repository/")
+            repository(url: "file://C:/Users/663587/.m2/repository/")
 	}
     }
 }
@@ -40,7 +41,7 @@ uploadArchives {
     contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
     publish {
         repository {
-            repoKey = 'gauravLocalRepo'
+            repoKey = 'Manjunath'
             username = "${artifactory_user}"
             password = "${artifactory_password}"
             maven = true  
