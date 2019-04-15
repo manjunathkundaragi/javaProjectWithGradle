@@ -48,7 +48,7 @@ node {
 //sh "'${gradleHome}/bin/gradle' sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=860b7e9e06174ee34335ad0f6f200f4fc8737725" 
       } else {
          echo "Running Sonarqube from  Windows System"
-bat script: "${gradleHome}\\bin\\gradle sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=860b7e9e06174ee34335ad0f6f200f4fc8737725"
+//bat script: "${gradleHome}\\bin\\gradle sonarqube -Dsonar.host.url=http://localhost:9000 -Dsonar.login=860b7e9e06174ee34335ad0f6f200f4fc8737725"
       }
    }
       stage ('Deploy to Maven local'){
@@ -61,16 +61,16 @@ bat script: "${gradleHome}\\bin\\gradle sonarqube -Dsonar.host.url=http://localh
       }
       
       stage('Deploy to Artifactory cloud'){
-      def server = Artifactory.server 'gauavArtifactory'
+      def server = Artifactory.server 'manjuArtifactory'
       echo "$server"
       server.bypassProxy = true
-      server.credentialsId = 'cloudArtifactory'
+      server.credentialsId = 'manjuArtifactory'
       server.connection.timeout = 300
       def uploadSpec = """{
  "files": [
   {
       "pattern": "${WORKSPACE}/build/libs/gradlePipeline_forJavaProject-1.0.jar",
-      "target": "gauravLocalRepo/"
+      "target": "Manjunath/"
     }
  ]
    }"""
